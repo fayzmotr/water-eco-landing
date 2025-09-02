@@ -13,13 +13,13 @@ const Footer: React.FC = () => {
   const handleContactClick = (type: 'phone' | 'email' | 'location') => {
     switch (type) {
       case 'phone':
-        window.open('tel:+998998233033', '_self');
+        window.open('tel:+998712562600', '_self');
         break;
       case 'email':
         window.open('mailto:ecgtashkent@gmail.com', '_self');
         break;
       case 'location':
-        alert('Location: Ташкент, Мирабадский район, ул. Ойбек 18/1');
+        alert('Location: Tashkent, Mirabadsky district, Shahrisabz str. 36');
         break;
     }
   };
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               <div className="w-12 h-12 flex items-center justify-center">
                 <img
                   src="https://i.imgur.com/your-logo-url.png"
-                  alt="Water Eco Best Logo"
+                  alt="ECO CONSTRUCTION GROUP Logo"
                   className="w-12 h-12 object-contain brightness-0 invert"
                   onError={(e) => {
                     // Fallback to a water drop icon if logo fails to load
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                 </div>
               </div>
               <div>
-                <span className="text-xl font-bold">OOO Water Eco Best</span>
+                <span className="text-xl font-bold">ECO CONSTRUCTION GROUP</span>
                 <span className="text-sm text-gray-400 block">{t('footer.company.tagline')}</span>
               </div>
             </div>
@@ -118,8 +118,8 @@ const Footer: React.FC = () => {
               >
                 <MapPin size={18} className="text-blue-400 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-300 text-sm leading-relaxed">
-                  Ташкент, Мирабадский район<br />
-                  ул. Ойбек 18/1
+                  Tashkent, Mirabadsky district<br />
+                  Shahrisabz str. 36
                 </span>
               </button>
               <button 
@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
                 className="flex items-center space-x-3 hover:bg-gray-800 p-2 rounded transition-colors w-full text-left"
               >
                 <Phone size={18} className="text-blue-400 flex-shrink-0" />
-                <span className="text-gray-300 text-sm">+998 99 823 30 33</span>
+                <span className="text-gray-300 text-sm">+998 (71) 256-26-00</span>
               </button>
               <button 
                 onClick={() => handleContactClick('email')}
@@ -143,7 +143,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 OOO Water Eco Best. {t('footer.rights')}
+              © 2024 ECO CONSTRUCTION GROUP. {t('footer.rights')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <button 

@@ -44,8 +44,129 @@ export const getProducts = async (options?: {
   limit?: number;
 }) => {
   if (!isSupabaseReady) {
-    // Return empty array for demo - no fake products
-    return { data: [], error: null };
+    // Return engineering solutions for ECG construction services
+    const engineeringSolutions = [
+      {
+        id: '1',
+        name: 'Municipal WWTP Design & Construction',
+        category: 'Wastewater Treatment Plants',
+        description: 'Complete design and construction of municipal wastewater treatment plants from 1,000 to 25,000 m³/day capacity with European technology integration and biological treatment systems.',
+        specifications: { 'Capacity Range': '1,000-25,000 m³/day', 'Treatment Type': 'Biological + Chemical', 'Technology': 'European Integration', 'Efficiency': '98-99%' },
+        images: ['https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800'],
+        is_featured: true,
+        is_active: true,
+        sort_order: 1,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '2', 
+        name: 'Industrial Wastewater Treatment Systems',
+        category: 'Wastewater Treatment Plants',
+        description: 'Specialized treatment systems for textile, mining, chemical, and food processing industries with metal recovery, neutralization, and environmental compliance.',
+        specifications: { 'Capacity Range': '2,000-35,000 m³/day', 'Industries': 'Textile, Mining, Chemical', 'Technology': 'Metal Recovery, pH Control', 'Compliance': 'Environmental Standards' },
+        images: ['https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800'],
+        is_featured: true,
+        is_active: true,
+        sort_order: 2,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '3',
+        name: 'Water Supply Systems with Membrane Technology',
+        category: 'Water Purification Systems',
+        description: 'Advanced water purification systems with multi-stage filtration, TORAY membranes, and automated distribution networks for municipalities.',
+        specifications: { 'Capacity Range': '3,000-25,000 m³/day', 'Technology': 'TORAY Membranes', 'Filtration': 'Multi-stage', 'Automation': 'SCADA Control' },
+        images: ['https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800'],
+        is_featured: true,
+        is_active: true,
+        sort_order: 3,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '4',
+        name: 'HDPE Container Treatment Units',
+        category: 'Modular Treatment Units',
+        description: 'Innovative modular treatment systems built with HDPE containers for rapid deployment, chemical resistance, and scalable capacity expansion.',
+        specifications: { 'Capacity Range': '500-10,000 m³/day', 'Material': 'HDPE Container', 'Deployment': '3-6 months', 'Features': 'Modular, Scalable' },
+        images: ['https://images.unsplash.com/photo-1572798635681-edb1a7aee5e7?w=800'],
+        is_featured: true,
+        is_active: true,
+        sort_order: 4,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '5',
+        name: 'BioSteps Biological Treatment Systems',
+        category: 'BioSteps BS Systems',
+        description: 'Five-stage biological treatment systems with automated controls and nutrient removal for high-efficiency wastewater treatment.',
+        specifications: { 'Stages': '5-Stage Process', 'Technology': 'Biological Treatment', 'Efficiency': '98-99%', 'Features': 'Nutrient Removal' },
+        images: ['https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800'],
+        is_featured: false,
+        is_active: true,
+        sort_order: 5,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '6',
+        name: 'Advanced Pumping Stations',
+        category: 'Pumping Stations', 
+        description: 'High-efficiency pumping stations with German WILO and BÖRGER pumps for sewerage and water distribution systems.',
+        specifications: { 'Technology': 'WILO & BÖRGER Pumps', 'Application': 'Water & Sewerage', 'Features': 'High Efficiency', 'Origin': 'German Technology' },
+        images: ['https://images.unsplash.com/photo-1597839677120-6d3c6e3c1b7f?w=800'],
+        is_featured: false,
+        is_active: true,
+        sort_order: 6,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '7',
+        name: 'Water Distribution & Storage Systems',
+        category: 'Distribution Wells',
+        description: 'Complete water distribution networks with automated controls, storage wells, and pressure monitoring systems.',
+        specifications: { 'Components': 'Wells, Networks, Storage', 'Controls': 'Automated Systems', 'Monitoring': 'Pressure & Flow', 'Capacity': 'Scalable Design' },
+        images: ['https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800'],
+        is_featured: false,
+        is_active: true,
+        sort_order: 7,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      },
+      {
+        id: '8',
+        name: 'Facility Modernization & Reconstruction',
+        category: 'Wastewater Treatment Plants',
+        description: 'Comprehensive upgrade and reconstruction of existing treatment facilities with European technology integration and performance optimization.',
+        specifications: { 'Service Type': 'Modernization', 'Technology': 'European Integration', 'Approach': 'Phased Implementation', 'Result': 'Performance Optimization' },
+        images: ['https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800'],
+        is_featured: false,
+        is_active: true,
+        sort_order: 8,
+        created_at: '2024-01-01',
+        updated_at: '2024-01-01'
+      }
+    ];
+
+    let filteredSolutions = engineeringSolutions;
+
+    if (options?.category && options.category !== 'all') {
+      filteredSolutions = filteredSolutions.filter(solution => solution.category === options.category);
+    }
+
+    if (options?.featured) {
+      filteredSolutions = filteredSolutions.filter(solution => solution.is_featured);
+    }
+
+    if (options?.limit) {
+      filteredSolutions = filteredSolutions.slice(0, options.limit);
+    }
+
+    return { data: filteredSolutions, error: null };
   }
 
   let query = supabase

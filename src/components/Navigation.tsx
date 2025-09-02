@@ -42,7 +42,7 @@ const Navigation: React.FC = () => {
             <div className="w-12 h-12 flex items-center justify-center">
               <img
                 src="https://i.imgur.com/your-logo-url.png"
-                alt="Water Eco Best Logo"
+                alt="ECO CONSTRUCTION GROUP Logo"
                 className="w-12 h-12 object-contain"
                 onError={(e) => {
                   // Fallback to a water drop icon if logo fails to load
@@ -59,7 +59,7 @@ const Navigation: React.FC = () => {
               </div>
             </div>
             <div>
-              <span className="text-2xl font-bold text-gray-900 tracking-tight">OOO Water Eco Best</span>
+              <span className="text-2xl font-bold text-gray-900 tracking-tight">ECO CONSTRUCTION GROUP</span>
               <span className="text-sm text-gray-500 block font-medium">{t('footer.company.tagline')}</span>
             </div>
           </button>

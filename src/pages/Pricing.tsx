@@ -123,55 +123,51 @@ const Pricing: React.FC = () => {
     return acc;
   }, {} as Record<string, typeof displayProducts>);
 
-  const pricingTiers = [
+  const consultationServices = [
     {
-      name: t('pricing.tiers.standard'),
-      description: 'Perfect for small to medium facilities',
+      title: 'Site Assessment & Design',
+      description: 'Comprehensive site evaluation and custom facility design',
       features: [
-        'Standard water treatment systems',
-        'Basic technical support',
-        '1-year warranty',
-        'Email support',
-        'Installation guidance'
+        'Site inspection and assessment',
+        'Water quality analysis',
+        'Capacity requirements evaluation',
+        'Preliminary design concepts',
+        'Technology selection guidance'
       ],
-      discount: '0%',
-      color: 'border-gray-300',
-      bgColor: 'bg-white',
-      buttonAction: () => handleContactSales()
-    },
-    {
-      name: t('pricing.tiers.professional'),
-      description: 'Ideal for large industrial operations',
-      features: [
-        'Advanced treatment systems',
-        'Priority technical support',
-        '2-year extended warranty',
-        'Phone & email support',
-        'On-site installation',
-        'Quarterly maintenance'
-      ],
-      discount: '12%',
+      icon: '🔍',
       color: 'border-blue-500',
-      bgColor: 'bg-blue-50',
-      popular: true,
-      buttonAction: () => handleContactSales()
+      bgColor: 'bg-blue-50'
     },
     {
-      name: t('pricing.tiers.enterprise'),
-      description: 'For complex industrial applications',
+      title: 'Engineering & Construction',
+      description: 'Complete facility construction with European technology',
       features: [
-        'Custom engineered solutions',
-        '24/7 technical support',
-        '3-year comprehensive warranty',
-        'Dedicated account manager',
-        'Complete installation & commissioning',
-        'Monthly maintenance contracts',
-        'Performance optimization'
+        'Detailed engineering design',
+        'Construction project management',
+        'European technology integration',
+        'Quality control and testing',
+        'Commissioning and startup',
+        'Staff training and support'
       ],
-      discount: '18%',
+      icon: '🏗️',
       color: 'border-green-500',
       bgColor: 'bg-green-50',
-      buttonAction: () => handleContactSales()
+      featured: true
+    },
+    {
+      title: 'Facility Reconstruction',
+      description: 'Modernization and upgrade of existing treatment facilities',
+      features: [
+        'Existing facility assessment',
+        'Upgrade and modernization planning',
+        'Technology retrofit solutions',
+        'Phased reconstruction approach',
+        'Minimal downtime implementation',
+        'Performance optimization'
+      ],
+      icon: '⚙️',
+      color: 'border-purple-500',
+      bgColor: 'bg-purple-50'
     }
   ];
 
@@ -224,7 +220,7 @@ const Pricing: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Pricing Tiers */}
+        {/* Consultation Services */}
         <section className="mb-20">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('pricing.tiers.title')}</h2>
@@ -232,27 +228,24 @@ const Pricing: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {pricingTiers.map((tier, index) => (
-              <div key={index} className={`${tier.bgColor} rounded-2xl p-8 border-2 ${tier.color} relative shadow-sm hover:shadow-lg transition-all duration-300`}>
-                {tier.popular && (
+            {consultationServices.map((service, index) => (
+              <div key={index} className={`${service.bgColor} rounded-2xl p-8 border-2 ${service.color} relative shadow-sm hover:shadow-lg transition-all duration-300`}>
+                {service.featured && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
-                      {t('pricing.tiers.popular')}
+                    <span className="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+                      Most Common
                     </span>
                   </div>
                 )}
                 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{tier.name}</h3>
-                  <p className="text-gray-600 mb-6">{tier.description}</p>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">
-                    {tier.discount} OFF
-                  </div>
-                  <p className="text-sm text-gray-500">on system packages</p>
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
 
                 <ul className="space-y-4 mb-8">
-                  {tier.features.map((feature, featureIndex) => (
+                  {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
                       <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
@@ -261,114 +254,75 @@ const Pricing: React.FC = () => {
                 </ul>
 
                 <button 
-                  onClick={tier.buttonAction}
+                  onClick={handleContactSales}
                   className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                    tier.popular
-                      ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl'
+                    service.featured
+                      ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl'
                       : 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  {t('common.getQuote')}
+                  Request Consultation
                 </button>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Product Pricing */}
+        {/* Project Capabilities */}
         <section>
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('pricing.systems.title')}</h2>
             <p className="text-xl text-gray-600">{t('pricing.systems.subtitle')}</p>
           </div>
 
-          {!isAuthenticated ? (
-            <LoginPrompt />
-          ) : loading ? (
-            <div className="text-center py-16">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="text-gray-600 mt-6 text-lg">{t('common.loading')}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">500</div>
+              <div className="text-gray-600 font-medium">m³/day minimum capacity</div>
             </div>
-          ) : (
-            <div className="space-y-10">
-              {Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-                <div key={category} className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
-                  <div className="bg-gray-50 px-8 py-6 border-b border-gray-100">
-                    <h3 className="text-2xl font-bold text-gray-900">{category}</h3>
-                  </div>
-                  
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th className="px-8 py-4 text-left text-sm font-semibold text-gray-900">
-                            System
-                          </th>
-                          <th className="px-8 py-4 text-left text-sm font-semibold text-gray-900">
-                            Specifications
-                          </th>
-                          <th className="px-8 py-4 text-left text-sm font-semibold text-gray-900">
-                            Price (USD)
-                          </th>
-                          <th className="px-8 py-4 text-left text-sm font-semibold text-gray-900">
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {categoryProducts.map((product) => (
-                          <tr key={product.id} className="hover:bg-gray-50 transition-colors">
-                            <td className="px-8 py-6">
-                              <div className="font-semibold text-gray-900 text-lg">{product.name}</div>
-                            </td>
-                            <td className="px-8 py-6">
-                              <div className="space-y-1">
-                                {Object.entries(product.specifications).map(([key, value]) => (
-                                  <div key={key} className="text-sm">
-                                    <span className="font-medium text-gray-600">{key}:</span>{' '}
-                                    <span className="text-gray-900">{value}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </td>
-                            <td className="px-8 py-6">
-                              <div className="text-2xl font-bold text-blue-600">
-                                ${product.price?.toLocaleString()}
-                              </div>
-                            </td>
-                            <td className="px-8 py-6">
-                              <button 
-                                onClick={() => handleGetQuote(product.name)}
-                                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-                              >
-                                {t('common.requestQuote')}
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              ))}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">35,000</div>
+              <div className="text-gray-600 font-medium">m³/day proven maximum</div>
             </div>
-          )}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">8</div>
+              <div className="text-gray-600 font-medium">years proven experience</div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">25+</div>
+              <div className="text-gray-600 font-medium">successful projects</div>
+            </div>
+          </div>
 
-          {/* Show sample data option */}
-          <div className="text-center mt-12">
-            <button
-              onClick={() => setIsAuthenticated(!isAuthenticated)}
-              className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
-            >
-              {isAuthenticated ? 'Hide' : 'Show'} Sample Pricing Data
-            </button>
+          <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-10 border border-gray-200">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Project-Based Consultation</h3>
+              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Every water treatment facility is unique. Our engineering team provides comprehensive consultation 
+                and custom solutions tailored to your specific requirements, capacity, and site conditions.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <button
+                  onClick={handleContactSales}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Request Site Assessment
+                </button>
+                <button 
+                  onClick={handleDownloadPriceList}
+                  className="border-2 border-blue-300 text-blue-700 hover:bg-blue-100 px-10 py-4 rounded-xl font-semibold transition-all duration-300"
+                >
+                  Download Company Profile
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Additional Info */}
-        <section className="mt-20 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-10 border border-blue-100">
+        {/* Contact Engineering Team */}
+        <section className="mt-20 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-10 border border-green-100">
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <Mail className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('pricing.custom.title')}</h3>
@@ -378,13 +332,13 @@ const Pricing: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={handleContactSales}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 {t('pricing.custom.contact')}
               </button>
               <button 
                 onClick={handleDownloadPriceList}
-                className="border-2 border-blue-300 text-blue-700 hover:bg-blue-100 px-10 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center"
+                className="border-2 border-green-300 text-green-700 hover:bg-green-100 px-10 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center"
               >
                 <Download className="mr-3" size={20} />
                 {t('pricing.custom.download')}

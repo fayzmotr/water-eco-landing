@@ -4,6 +4,7 @@ import { ArrowRight, Star, CheckCircle, Users, Award, TrendingUp, Phone, Shield,
 import { getClients, getTestimonials, getProducts } from '../lib/database';
 import { Client, Testimonial, Product } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import EuropeanPartners from '../components/EuropeanPartners';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
@@ -35,42 +36,42 @@ const Home: React.FC = () => {
   };
 
   const handleCallNow = () => {
-    window.open('tel:+998712005000', '_self');
+    window.open('tel:+998712562600', '_self');
   };
 
   const handleEmailUs = () => {
-    window.open('mailto:info@waterecobest.uz', '_self');
+    window.open('mailto:ecgtashkent@gmail.com', '_self');
   };
 
   const stats = [
-    { icon: Users, label: t('home.stats.clients'), value: '20+', color: 'text-blue-600' },
-    { icon: Award, label: t('home.stats.years'), value: '8', color: 'text-green-600' },
-    { icon: TrendingUp, label: t('home.stats.projects'), value: '1M m³/day', color: 'text-purple-600' },
-    { icon: CheckCircle, label: t('home.stats.success'), value: '98-99%', color: 'text-orange-600' }
+    { icon: Users, label: 'Completed Projects', value: '25+', color: 'text-blue-600' },
+    { icon: Award, label: 'Years of Excellence', value: '8', color: 'text-green-600' },
+    { icon: TrendingUp, label: 'Maximum Daily Capacity', value: '35,000 m³', color: 'text-purple-600' },
+    { icon: CheckCircle, label: 'Treatment Efficiency', value: '98-99%', color: 'text-orange-600' }
   ];
 
   const solutions = [
     {
-      title: t('home.solutions.filtration.title'),
-      description: t('home.solutions.filtration.desc'),
+      title: 'Municipal Wastewater Treatment',
+      description: 'Complete biological and chemical treatment systems for cities and districts, from 1,000 to 25,000 m³/day capacity with advanced European technology integration.',
       icon: Shield,
       gradient: 'from-blue-500 to-blue-600'
     },
     {
-      title: t('home.solutions.monitoring.title'),
-      description: t('home.solutions.monitoring.desc'),
+      title: 'Industrial Treatment Solutions',
+      description: 'Specialized treatment for textile, mining, chemical, and food processing industries with metal recovery, neutralization, and compliance systems.',
       icon: Zap,
       gradient: 'from-green-500 to-green-600'
     },
     {
-      title: t('home.solutions.standards.title'),
-      description: t('home.solutions.standards.desc'),
+      title: 'Water Supply Systems',
+      description: 'Advanced water purification with multi-stage filtration, membrane technology, and automated distribution networks for municipalities and regions.',
       icon: Globe,
       gradient: 'from-purple-500 to-purple-600'
     },
     {
-      title: t('home.solutions.sustainable.title'),
-      description: t('home.solutions.sustainable.desc'),
+      title: 'Facility Modernization',
+      description: 'Comprehensive upgrade and reconstruction of existing treatment plants with European technology integration and performance optimization.',
       icon: Droplets,
       gradient: 'from-cyan-500 to-cyan-600'
     }
@@ -158,6 +159,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* European Technology Partners */}
+      <EuropeanPartners />
 
       {/* Solutions Section */}
       <section className="py-24 bg-gray-50">

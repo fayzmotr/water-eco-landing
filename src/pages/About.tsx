@@ -1,6 +1,9 @@
 import React from 'react';
 import { Award, Users, Target, Zap, Shield, Globe, Droplets, CheckCircle, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import EuropeanPartners from '../components/EuropeanPartners';
+import TechnologyInnovation from '../components/TechnologyInnovation';
+import ConstructionProcess from '../components/ConstructionProcess';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
@@ -139,6 +142,15 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* European Technology Partners */}
+      <EuropeanPartners />
+
+      {/* Technology Innovation */}
+      <TechnologyInnovation />
+
+      {/* Construction Process */}
+      <ConstructionProcess />
 
       {/* Mission & Vision */}
       <section className="py-24 bg-gray-50">

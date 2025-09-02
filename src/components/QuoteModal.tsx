@@ -17,6 +17,13 @@ interface QuoteForm {
   client_company?: string;
   client_phone?: string;
   quantity: number;
+  capacity_required?: number;
+  installation_location?: string;
+  project_timeline?: string;
+  budget_range?: string;
+  water_source?: string;
+  effluent_quality_requirements?: string;
+  site_conditions?: string;
   message?: string;
 }
 
@@ -234,6 +241,129 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ product, isOpen, onClose }) => 
                 {errors.quantity && (
                   <p className="text-red-600 text-sm mt-2">{errors.quantity.message}</p>
                 )}
+              </div>
+
+              {/* Solution-specific fields */}
+              <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 space-y-6">
+                <h4 className="text-lg font-semibold text-blue-900 mb-4">Project Specifications</h4>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-3">
+                      Required Capacity (m³/day)
+                    </label>
+                    <input
+                      type="number"
+                      min="10"
+                      max="50000"
+                      {...register('capacity_required', {
+                        valueAsNumber: true,
+                        min: { value: 10, message: 'Capacity must be at least 10 m³/day' },
+                        max: { value: 50000, message: 'Capacity cannot exceed 50,000 m³/day' }
+                      })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                      placeholder="e.g. 500"
+                      disabled={isSubmitting}
+                    />
+                    {errors.capacity_required && (
+                      <p className="text-red-600 text-sm mt-2">{errors.capacity_required.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-3">
+                      Installation Location
+                    </label>
+                    <input
+                      type="text"
+                      {...register('installation_location')}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                      placeholder="City, Region"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-3">
+                      Project Timeline
+                    </label>
+                    <select
+                      {...register('project_timeline')}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Select timeline</option>
+                      <option value="urgent">Urgent (1-3 months)</option>
+                      <option value="normal">Normal (3-6 months)</option>
+                      <option value="flexible">Flexible (6+ months)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-3">
+                      Budget Range (USD)
+                    </label>
+                    <select
+                      {...register('budget_range')}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Select budget range</option>
+                      <option value="50k-100k">$50,000 - $100,000</option>
+                      <option value="100k-250k">$100,000 - $250,000</option>
+                      <option value="250k-500k">$250,000 - $500,000</option>
+                      <option value="500k-1m">$500,000 - $1,000,000</option>
+                      <option value="1m+">$1,000,000+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-3">
+                    Water Source Type
+                  </label>
+                  <select
+                    {...register('water_source')}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                    disabled={isSubmitting}
+                  >
+                    <option value="">Select water source</option>
+                    <option value="municipal">Municipal Wastewater</option>
+                    <option value="industrial">Industrial Wastewater</option>
+                    <option value="agricultural">Agricultural Runoff</option>
+                    <option value="groundwater">Groundwater Treatment</option>
+                    <option value="surface">Surface Water Treatment</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-3">
+                    Effluent Quality Requirements
+                  </label>
+                  <textarea
+                    rows={2}
+                    {...register('effluent_quality_requirements')}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
+                    placeholder="e.g. BOD <10mg/L, COD <50mg/L, TSS <10mg/L"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-3">
+                    Site Conditions
+                  </label>
+                  <textarea
+                    rows={2}
+                    {...register('site_conditions')}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
+                    placeholder="Available space, soil conditions, accessibility, utilities"
+                    disabled={isSubmitting}
+                  />
+                </div>
               </div>
 
               <div>

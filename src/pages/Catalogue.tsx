@@ -4,6 +4,8 @@ import { getProducts, getCategories, getCatalogues } from '../lib/database';
 import { Product, Category } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 import QuoteModal from '../components/QuoteModal';
+import SolutionDetailsModal from '../components/SolutionDetailsModal';
+import { generateSolutionPDF } from '../lib/pdfGenerator';
 
 const Catalogue: React.FC = () => {
   const { t } = useLanguage();
@@ -16,6 +18,7 @@ const Catalogue: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -66,15 +69,26 @@ const Catalogue: React.FC = () => {
   };
 
   const handleViewDetails = (product: Product) => {
-    alert(`Product Details:\n\nName: ${product.name}\nCategory: ${product.category}\nDescription: ${product.description}\n\nSpecifications:\n${Object.entries(product.specifications).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
+    setSelectedProduct(product);
+    setShowDetailsModal(true);
   };
 
   const handleDownloadPDF = (product: Product) => {
     if (product.pdf_url) {
       window.open(product.pdf_url, '_blank');
     } else {
-      alert('PDF specification sheet will be available soon for this product.');
+      // Generate professional PDF using jsPDF
+      generateSolutionPDF(product, {
+        includeTechnicalSpecs: true,
+        includeConstructionProcess: true,
+        includePartners: true
+      });
     }
+  };
+
+  const handleQuoteFromDetails = () => {
+    setShowDetailsModal(false);
+    setShowQuoteModal(true);
   };
 
   const handleDownloadCatalog = () => {
@@ -377,6 +391,19 @@ const Catalogue: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Solution Details Modal */}
+      {selectedProduct && (
+        <SolutionDetailsModal
+          product={selectedProduct}
+          isOpen={showDetailsModal}
+          onClose={() => {
+            setShowDetailsModal(false);
+            setSelectedProduct(null);
+          }}
+          onGetQuote={handleQuoteFromDetails}
+        />
+      )}
 
       {/* Quote Modal */}
       {selectedProduct && (
